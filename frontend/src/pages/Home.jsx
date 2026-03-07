@@ -11,6 +11,7 @@ const LIMIT = 12;
 
 const Home = () => {
     const [products, setProducts] = useState([]);
+    const [trendingProducts, setTrendingProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [search, setSearch] = useState("");
@@ -40,6 +41,10 @@ const Home = () => {
     // Initial load
     useEffect(() => {
         fetchProducts("", "All", 1);
+        // Fetch trending/featured products separately so they always show
+        getProducts({ featured: "true", limit: 8 })
+            .then(({ data }) => setTrendingProducts(data.data))
+            .catch(() => { });
     }, [fetchProducts]);
 
     // Debounce search & category — resets page to 1
@@ -124,14 +129,15 @@ const Home = () => {
 
             {/* Products Section */}
             <main id="products" className="container">
-                {/* Popular Drinks */}
-                {category === "All" && !search && page === 1 && !loading && !error && (
+                {/* Trending Drinks — from dedicated API fetch */}
+                {category === "All" && !search && page === 1 && !loading && !error && trendingProducts.length > 0 && (
                     <div className="popular-drinks-section" style={{ marginBottom: 32 }}>
                         <div className="section-header">
                             <h2>🔥 Trending Drinks</h2>
+                            <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{trendingProducts.length} products</span>
                         </div>
                         <div className="products-grid">
-                            {products.filter(p => p.isFeatured).slice(0, 5).map(product => (
+                            {trendingProducts.map(product => (
                                 <ProductCard key={product._id} product={product} />
                             ))}
                         </div>
