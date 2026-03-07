@@ -39,17 +39,19 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(cartReducer, { items: [] });
-
-    // Load from localStorage on mount
-    useEffect(() => {
+    // ✅ Lazy initializer: load from localStorage SYNCHRONOUSLY as the first state
+    // This prevents the race condition where the save effect fires with [] before
+    // the load effect can restore the cart (which was wiping the cart on every refresh)
+    const [state, dispatch] = useReducer(cartReducer, undefined, () => {
         try {
             const stored = localStorage.getItem("blinkit_cart");
-            if (stored) dispatch({ type: "LOAD_CART", payload: JSON.parse(stored) });
-        } catch { }
-    }, []);
+            return { items: stored ? JSON.parse(stored) : [] };
+        } catch {
+            return { items: [] };
+        }
+    });
 
-    // Persist to localStorage on change
+    // ✅ Persist to localStorage every time cart changes (save only — no load needed)
     useEffect(() => {
         localStorage.setItem("blinkit_cart", JSON.stringify(state.items));
     }, [state.items]);
