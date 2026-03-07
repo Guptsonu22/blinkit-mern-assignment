@@ -117,52 +117,10 @@ ul {
   gap: 16px;
 }
 
-/* ── Topbar (Blinkit-style delivery info bar) ── */
-.topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1001;
-  height: 36px;
-  background: #0c831f;
-  color: rgba(255, 255, 255, 0.93);
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-
-.topbar__inner {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.topbar__delivery {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-weight: 600;
-}
-
-.topbar__location {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  opacity: 0.85;
-}
-
-.topbar__promo {
-  opacity: 0.9;
-  font-size: 0.75rem;
-}
-
 /* ── Navbar ── */
 .navbar {
   position: fixed;
-  top: 36px;
-  /* sits below the topbar */
+  top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -289,8 +247,7 @@ ul {
 
 /* ── Page Wrapper ── */
 .page {
-  padding-top: calc(var(--nav-height) + 36px);
-  /* navbar + topbar */
+  padding-top: var(--nav-height);
   min-height: 100vh;
 }
 
