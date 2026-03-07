@@ -11,8 +11,9 @@ A full-stack **Blinkit-inspired drinks catalog** built with the MERN stack. Brow
 
 ## 🌐 Live Demo
 
-- **Frontend Application:** [https://your-app.vercel.app](https://your-app.vercel.app)
-- **Backend API:** [https://your-api.onrender.com](https://your-api.onrender.com)
+- **Frontend Application:** [https://blinkit-mern-assignment.vercel.app](https://blinkit-mern-assignment.vercel.app)
+- **Backend API:** [https://blinkit-backend-xttf.onrender.com](https://blinkit-backend-xttf.onrender.com)
+- **API Products Endpoint:** [https://blinkit-backend-xttf.onrender.com/api/products](https://blinkit-backend-xttf.onrender.com/api/products)
 
 ---
 
