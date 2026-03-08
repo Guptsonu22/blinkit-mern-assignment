@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import OrderConfirmation from "./pages/OrderConfirmation";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </CartProvider>
     </BrowserRouter>
   );
