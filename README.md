@@ -36,20 +36,17 @@ A full-stack **Blinkit-inspired drinks catalog** built with the MERN stack. Brow
 ## 📸 Project Preview
 
 ### Home Page
-![Home](./<img width="1916" height="917" alt="1" src="https://github.com/user-attachments/assets/a720c0f1-1014-4e9f-b587-ab1b922dcf59" />
-/home.png)
+![Home](<img width="1905" height="882" alt="5" src="https://github.com/user-attachments/assets/e8db1f3d-263d-4f08-83e1-c5437a5b2e19" />)
 
 ### Product Page
-![Product](./<img width="1916" height="918" alt="2" src="https://github.com/user-attachments/assets/b5eb9631-f872-40e5-bae7-b1b7e7ce4a01" />
-/product.png)
+![Product](<img width="1916" height="918" alt="2" src="https://github.com/user-attachments/assets/b5eb9631-f872-40e5-bae7-b1b7e7ce4a01" />)
 
 ### Cart Page
-![Cart](./<img width="1915" height="917" alt="3" src="https://github.com/user-attachments/assets/1e7699ce-2c33-4913-aab7-2c92324019b0" />
-/cart.png)
+![Cart](<img width="1915" height="917" alt="3" src="https://github.com/user-attachments/assets/1e7699ce-2c33-4913-aab7-2c92324019b0" />)
 
 ### Order Confirmation
-![Order](./<img width="1345" height="936" alt="4" src="https://github.com/user-attachments/assets/1fec5a47-9857-4450-ae0d-e7fff2662470" />
-/order.png)
+![Order](<img width="1345" height="936" alt="4" src="https://github.com/user-attachments/assets/1fec5a47-9857-4450-ae0d-e7fff2662470" />
+)
 
 ---
 
