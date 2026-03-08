@@ -142,17 +142,18 @@ ul {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 1.4rem;
-  color: var(--primary);
   white-space: nowrap;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .navbar__logo-icon {
   width: 36px;
   height: 36px;
-  background: var(--primary);
+  background: #f8c22f;
+  /* Blinkit yellow icon background */
   border-radius: 10px;
   display: flex;
   align-items: center;

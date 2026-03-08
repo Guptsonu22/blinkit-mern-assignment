@@ -106,11 +106,11 @@ const Navbar = ({ search, onSearch }) => {
                 {/* Logo */}
                 <Link to="/" className="navbar__logo" id="navbar-logo">
                     <div className="navbar__logo-icon">
-                        <FiZap color="#fff" size={18} />
+                        <FiZap color="#0c831f" size={18} />
                     </div>
                     <div>
-                        <span className="logo-text" style={{ color: "#0c831f", fontWeight: 900 }}>
-                            blinkit
+                        <span className="logo-text">
+                            <span style={{ color: "#f8c22f" }}>blink</span><span style={{ color: "#0c831f" }}>it</span>
                         </span>
                         <span className="navbar__tagline">drinks delivered fast</span>
                     </div>
