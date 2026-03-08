@@ -13,6 +13,8 @@ const Home = () => {
     const [products, setProducts] = useState([]);
     const [trendingProducts, setTrendingProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isWarmingUp, setIsWarmingUp] = useState(false);
+    const [retryCount, setRetryCount] = useState(0);
     const [error, setError] = useState(null);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("All");
@@ -21,9 +23,10 @@ const Home = () => {
     const debounceRef = useRef(null);
     const isInitialMount = useRef(true);
 
-    const fetchProducts = useCallback(async (q, cat, pg) => {
+    const fetchProducts = useCallback(async (q, cat, pg, retry = 0) => {
         setLoading(true);
         setError(null);
+        if (retry > 0) setIsWarmingUp(true);
         try {
             const params = { page: pg, limit: LIMIT };
             if (q) params.search = q;
@@ -31,10 +34,20 @@ const Home = () => {
             const { data } = await getProducts(params);
             setProducts(data.data);
             setPagination(data.pagination);
+            setIsWarmingUp(false);
+            setRetryCount(0);
         } catch (err) {
-            setError("Couldn't load products. Is the backend running?");
+            if (retry < 2) {
+                // Auto-retry up to 2 times (handles Render cold start)
+                setIsWarmingUp(true);
+                setRetryCount(retry + 1);
+                setTimeout(() => fetchProducts(q, cat, pg, retry + 1), 5000);
+            } else {
+                setIsWarmingUp(false);
+                setError("Couldn't load products. Please try again.");
+            }
         } finally {
-            setLoading(false);
+            if (retry === 0 || retry >= 2) setLoading(false);
         }
     }, []);
 
@@ -164,6 +177,18 @@ const Home = () => {
                         <button className="back-btn" onClick={() => fetchProducts(search, category, page)}>
                             Try Again
                         </button>
+                    </div>
+                ) : isWarmingUp ? (
+                    <div className="warmup-state">
+                        <div className="warmup-spinner" />
+                        <h3>⏳ Waking up the server...</h3>
+                        <p>Our free backend spins down when idle. First load takes ~30 seconds.</p>
+                        <div className="warmup-dots">
+                            <span style={{ animationDelay: '0s' }} />
+                            <span style={{ animationDelay: '0.3s' }} />
+                            <span style={{ animationDelay: '0.6s' }} />
+                        </div>
+                        <small style={{ color: 'var(--text-muted)', marginTop: 8 }}>Retry {retryCount}/2...</small>
                     </div>
                 ) : products.length === 0 ? (
                     <div className="empty-state">
